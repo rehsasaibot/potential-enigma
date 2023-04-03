@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown Timer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    #timer {
+      font-size: 48px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div id="timer">00:00:00</div>
+
+  <script>
+    function countdown() {
+      const endDate = new Date("2023-04-04T20:00:00");
+      const now = new Date();
+      const timeDifference = endDate - now;
+      
+      if (timeDifference <= 0) {
+        document.getElementById("timer").innerHTML = "00:00:00";
+        return;
+      }
+      
+      const hoursLeft = Math.floor(timeDifference / (1000 * 60 * 60));
+      const minutesLeft = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+      const secondsLeft = Math.floor((timeDifference % (1000 * 60)) / 1000);
+      
+      document.getElementById("timer").innerHTML = `${hoursLeft.toString().padStart(2, '0')}:${minutesLeft.toString().padStart(2, '0')}:${secondsLeft.toString().padStart(2, '0')}`;
+    }
+
+    setInterval(countdown, 1000);
+  </script>
+</body>
+</html>
